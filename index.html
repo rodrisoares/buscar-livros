@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Busque livros no acervo do Google Books e organize sua estante: quero ler, lendo e lido."
+    />
+    <title>Buscar Livros | Sua estante virtual</title>
+    <script>
+      // Aplica o tema antes da primeira pintura, senão a tela pisca branca no modo escuro.
+      // Só existem 'light' e 'dark': sem escolha guardada, o sistema decide a primeira visita.
+      (function () {
+        try {
+          var escolha = localStorage.getItem('theme');
+          var escuro =
+            escolha === 'dark' ||
+            (escolha !== 'light' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', escuro);
+          document.documentElement.style.colorScheme = escuro ? 'dark' : 'light';
+        } catch (e) {
+          /* storage bloqueado: segue no tema claro */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
